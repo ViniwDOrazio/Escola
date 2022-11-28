@@ -64,7 +64,6 @@
 #define OPCAO_CONSULTAR_COMPRAS_CLIENTE 6
 #define OPCAO_SAIR 7
 
-
 struct cliente
 {
     char nome[TAMANHO_NOME];
@@ -111,7 +110,6 @@ void removerQuebraLinha(char* Texto)
     if (*Texto && Texto[Ultimo] == '\n') 
         Texto[Ultimo] = '\0';
 }
-
 struct cliente lerCliente()
 {
     struct cliente Retorno;
@@ -145,7 +143,7 @@ void cadastrarCliente()
 void imprimirLista()
 {
     for (int i = 0; i <= ProximoLista - 1; i++)
-        printf("\n%i - %s", i, ListaClientes[i].nome);
+        printf("\n%i - %s\n", i, strupr(ListaClientes[i].nome));
 }
 
 void excluirCliente()
@@ -175,7 +173,7 @@ void excluirCliente()
         }
         else
         {
-            printf("\nIndice Fora da Lista");
+            printf("\nIndice Fora da Lista\n");
             esperarInteracao();
         }
     }
@@ -199,7 +197,7 @@ void AtualizarComprasCliente()
 
         if ((indiceSelecionado >=0) && (indiceSelecionado <= ProximoLista))
         {
-            printf("\nO cliente \"%s\" gastou %f nesse mês, digite o valor da nova compra: ", ListaClientes[indiceSelecionado].nome, ListaClientes[indiceSelecionado].valorGasto);
+            printf("\nO cliente \"%s\" gastou %.2f nesse mês, digite o valor da nova compra: ", strupr(ListaClientes[indiceSelecionado].nome), ListaClientes[indiceSelecionado].valorGasto);
 
             float valor;
             scanf("%f", &valor);
@@ -208,7 +206,7 @@ void AtualizarComprasCliente()
         }
         else
         {
-            printf("\nIndice Fora da Lista");
+            printf("\nIndice Fora da Lista\n");
             esperarInteracao();
         }
     }
@@ -274,13 +272,13 @@ void ListarTop3()
         }
 
         if (Maior > -1)
-            printf("\n1 - O cliente \"%s\" gastou %f nesse mês", ListaClientes[Maior].nome, ListaClientes[Maior].valorGasto);
+            printf("\n1 - O cliente \"%s\" gastou %.2f nesse mês", strupr(ListaClientes[Maior].nome), ListaClientes[Maior].valorGasto);
 
         if (SegundoMaior > -1)
-            printf("\n2 - O cliente \"%s\" gastou %f nesse mês", ListaClientes[SegundoMaior].nome, ListaClientes[SegundoMaior].valorGasto);
+            printf("\n2 - O cliente \"%s\" gastou %.2f nesse mês", strupr(ListaClientes[SegundoMaior].nome), ListaClientes[SegundoMaior].valorGasto);
 
         if (TerceiroMaior > -1)
-            printf("\n3 - O cliente \"%s\" gastou %f nesse mês", ListaClientes[TerceiroMaior].nome, ListaClientes[TerceiroMaior].valorGasto);
+            printf("\n3 - O cliente \"%s\" gastou %.2f nesse mês", strupr(ListaClientes[TerceiroMaior].nome), ListaClientes[TerceiroMaior].valorGasto);
 
         esperarInteracao();
     }
@@ -304,12 +302,12 @@ void ConsultarComprasClientes()
 
         if ((indiceSelecionado >=0) && (indiceSelecionado <= ProximoLista))
         {
-            printf("\nO cliente \"%s\" gastou %f nesse mês, digite o valor da nova compra: ", ListaClientes[indiceSelecionado].nome, ListaClientes[indiceSelecionado].valorGasto);
+            printf("\nO cliente \"%s\" gastou %.2f nesse mês, digite o valor da nova compra: ", strupr(ListaClientes[indiceSelecionado].nome), ListaClientes[indiceSelecionado].valorGasto);
             esperarInteracao();
         }
         else
         {
-            printf("\nIndice Fora da Lista");
+            printf("\nIndice Fora da Lista\n");
             esperarInteracao();
         }
     }
